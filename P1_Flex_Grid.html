@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .contenedor {
+            /*Direccion ya sea vertical o horizontal*/
+            /*display: flex;
+            flex-direction: row;*/
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .card {
+            width: 80px;
+            padding: 20px;
+            margin: 10px;
+        }
+        .card-larga{
+            grid-column: 3;
+            grid-row: span 2;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+    <div class="card"  style="background-color: rgb(197, 52, 52);">CARD1</div>
+    <div class="card"  style="background-color: rgb(135, 37, 37);">CARD2</div>
+    <div class="card-larga"  style="background-color: rgb(114, 54, 54);">CARD3</div>
+    <div class="card"  style="background-color: rgb(68, 222, 83);">CARD4</div>
+    <div class="card"  style="background-color: rgb(32, 106, 185);">CARD5</div>
+    <div class="card"  style="background-color: rgb(220, 67, 231);">CARD6</div>
+    <div class="card"  style="background-color: rgb(98, 10, 181);">CARD7</div>
+  </div>
+</body>
+</html>
