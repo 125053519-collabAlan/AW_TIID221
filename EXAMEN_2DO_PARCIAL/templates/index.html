@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD DIRECTORIO DE CONTACTOS</title>
+</head>
+<body>
+    <div>
+        <h1>DIRECTORIO DE CONTACTOS</h1>
+
+        {% with mesajes = get_flashed_messages() %}
+            {% if mesajes %}
+                    {% for msj in mesajes %}
+                        <h3>{{ msj }}</h3>
+                    {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <!-- FORMULARIO DE CONTACTOS -->
+         <form action="/guardar" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre">
+            <input type="text" name="apellido" placeholder="Apellido">
+            <input type="tel" name="telefono" placeholder="Teléfono">
+            <input type="email" name="correo" placeholder="Correo electrónico">
+            <input type="text" name="direccion" placeholder="Dirección">
+            <button type="submit">Guardar</button>
+        </form>
+        <!-- TABLA DE CONTACTOS -->
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Teléfono</th>
+                    <th>Correo electrónico</th>
+                    <th>Dirección</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contacto in contactos %}
+                <tr>
+                    <td>{{ contacto[0] }}</td>
+                    <td>{{ contacto[1] }}</td>
+                    <td>{{ contacto[2] }}</td>
+                    <td>{{ contacto[3] }}</td>
+                    <td>{{ contacto[4] }}</td>
+                    <td>{{ contacto[5] }}</td>
+                    <td>
+                        <a href="/editar/">Editar</a>
+                        <a href="#">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
