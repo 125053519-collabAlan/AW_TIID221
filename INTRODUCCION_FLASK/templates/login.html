@@ -1,28 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
-    <title>LOGIN</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div>
-        <h1>INICIAR SESIÓN</h1>
-        {% if error %}
-            <p style="color: red;">{{ error }}</p>
-        {% endif %}
-        <form action="/login" method="POST">
-            <label>Correo:</label>
-            <input type="email" name="correo" required>
-            <label>Contraseña</label>
-            <br><br>
-            <input type="password" name="password" required>
-            <button type="submit" class="btn btn-warning">Entrar</button>
-        </form>
-        <p>¿No tienes cuenta?</p>
-       <a href="{{ url_for('registro') }}">Registrate</a>
+<body class="min-h-screen bg-base-200 flex items-center justify-center p-4">
+
+    <div class="card w-full max-w-md bg-base-100 shadow-xl">
+        <div class="card-body">
+
+            <h1 class="text-3xl font-bold text-center">Iniciar sesión</h1>
+            <p class="text-center text-base-content/60 mb-2">Ingresa tus datos para continuar</p>
+
+            {% if error %}
+            <div role="alert" class="alert alert-error alert-soft">
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
+            <form action="/login" method="POST" class="flex flex-col gap-3">
+
+                <label class="floating-label">
+                    <span>Correo</span>
+                    <input type="email" name="correo" placeholder="Correo" class="input input-bordered w-full" required>
+                </label>
+
+                <label class="floating-label">
+                    <span>Contraseña</span>
+                    <input type="password" name="password" placeholder="Contraseña" class="input input-bordered w-full" required>
+                </label>
+
+                <button type="submit" class="btn btn-warning w-full mt-2">Entrar</button>
+            </form>
+
+            <div class="divider">o</div>
+
+            <p class="text-center">
+                ¿No tienes cuenta?
+                <a href="{{ url_for('registro') }}" class="link link-warning font-semibold">Regístrate</a>
+            </p>
+
+        </div>
     </div>
+
 </body>
-<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </html>

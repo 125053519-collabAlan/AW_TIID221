@@ -1,32 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
-<body>
-    <div>
-        <h1>Registro de usuarios</h1>
-        <form action="/registro" method="POST">
-            <label>Nombre(s): </label>
-            <input type="text" name="nombre">
-            <label>Apellido paterno: </label>
-            <input type="text" name="apellido_p">
-            <label>Apellido materno: </label>
-            <input type="text" name="apellido_m">
-            <label>Correo: </label>
-            <input type="email" name="correo">
-            <label>Contraseña: </label>
-            <input type="password" name="password">
-            <label for="id_rol">Rol: </label>
-            <select name="id_rol" id="id_rol">
-                <option value="1">Administrador</option>
-                <option value="2">Usuario</option>
-            </select>
-            <button type="submit">Registrarse</button>
-        </form>
-        <p><a href="{{ url_for('logout') }}">Regresar</a></p>
+<body class="min-h-screen bg-base-200 flex items-center justify-center p-4">
+
+    <div class="card w-full max-w-lg bg-base-100 shadow-xl">
+        <div class="card-body">
+
+            <h1 class="text-3xl font-bold text-center">Crear cuenta</h1>
+            <p class="text-center text-base-content/60 mb-2">Llena el formulario para registrarte</p>
+
+            {% if error %}
+            <div role="alert" class="alert alert-error alert-soft">
+                <span>{{ error }}</span>
+            </div>
+            {% endif %}
+
+            <form action="/registro" method="POST" class="flex flex-col gap-3">
+
+                <label class="floating-label">
+                    <span>Nombre(s)</span>
+                    <input type="text" name="nombre" placeholder="Nombre(s)" class="input input-bordered w-full" required>
+                </label>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <label class="floating-label">
+                        <span>Apellido paterno</span>
+                        <input type="text" name="apellido_p" placeholder="Apellido paterno" class="input input-bordered w-full" required>
+                    </label>
+
+                    <label class="floating-label">
+                        <span>Apellido materno</span>
+                        <input type="text" name="apellido_m" placeholder="Apellido materno" class="input input-bordered w-full" required>
+                    </label>
+                </div>
+
+                <label class="floating-label">
+                    <span>Correo</span>
+                    <input type="email" name="correo" placeholder="Correo" class="input input-bordered w-full" required>
+                </label>
+
+                <label class="floating-label">
+                    <span>Contraseña</span>
+                    <input type="password" name="password" placeholder="Contraseña" class="input input-bordered w-full" required>
+                </label>
+
+                <label class="floating-label">
+                    <span>Rol</span>
+                    <select name="id_rol" id="id_rol" class="select select-bordered w-full">
+                        <option value="1">Administrador</option>
+                        <option value="2">Usuario</option>
+                    </select>
+                </label>
+
+                <button type="submit" class="btn btn-warning w-full mt-2">Registrarse</button>
+            </form>
+
+            <div class="divider">o</div>
+
+            <p class="text-center">
+                ¿Ya tienes cuenta?
+                <a href="{{ url_for('login') }}" class="link link-warning font-semibold">Inicia sesión</a>
+            </p>
+
+        </div>
     </div>
+
 </body>
 </html>
