@@ -9,14 +9,19 @@
 <body>
     <div>
         <h1>INICIAR SESIÓN</h1>
-        <form action="" method="POST">
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        <form action="/login" method="POST">
             <label>Correo:</label>
-            <input type="email" name="correo" requiered>
+            <input type="email" name="correo" required>
             <label>Contraseña</label>
             <br><br>
-            <input type="password" name="password_hash" readonly>
+            <input type="password" name="password" required>
             <button type="submit" class="btn btn-warning">Entrar</button>
         </form>
+        <p>¿No tienes cuenta?</p>
+       <a href="{{ url_for('registro') }}">Registrate</a>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
